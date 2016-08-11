@@ -1,8 +1,10 @@
-class Money {
-	
-	
+class Money {	
 	public Money() {
-		
+		this._amount = 0;
+  		this._currency = "BRL";		
+	}
+	public Money(int amount, String currency){
+		MoneySetUp(amount, currency);
 	}
 	
 	public void MoneySetUp(int amount, String currency){
@@ -11,28 +13,17 @@ class Money {
 	}
 	
 	public Money add(Money m) { 
-		Money money = new Money();
-		
+		Money money = new Money();		
 		money.setAmount(this.getAmount() + m.getAmount()); 
-		money.setCurrency(this.getCurrency());
-		
+		money.setCurrency(this.getCurrency());		
 		return money;
-	}
-	
-	public int getAmount() {
-		set_amount(5);
-		
-		return get_amount();
-	}
-	
+	}	
 	public void setAmount(int amount) { 
 		this.set_amount(amount);
 		
 	} //setAmount 	Inicialização
 	
-	public String getCurrency() {
-		_currency = "USD";
-		
+	public String getCurrency() {		
 		return _currency;
 	}
 	
@@ -40,7 +31,7 @@ class Money {
 		this._currency = currency;
 	} //setCurrency  Inicialização
 	
-	public int get_amount() {
+	public int getAmount() {
 		return _amount;
 	}
 

@@ -13,42 +13,24 @@ public class MoneyTest {
 
     @Before
     public void setUp() {
-        M_5_USD.MoneySetUp(5, "USD");
-        M_15_USD.MoneySetUp(15, "USD");
-        M_10_CHF.MoneySetUp(10, "CHF");
-        M_78_EUR.MoneySetUp(78, "EUR");
-        M_40_BRL.MoneySetUp(40, "BRL");
-    }
-    
-	@Test
-	public void testMoney() {
-	}
+    	M_5_USD = new Money(5, "USD");
+    	M_15_USD = new Money(15, "USD");
+    	M_10_CHF = new Money(10, "CHF");
+    	M_78_EUR = new Money(78, "EUR");
+    	M_40_BRL = new Money(40, "BRL");
+    }   
 
 	@Test
-	public void testAdd() {
+	public void testAddTrue() {
 		Money MyMoney = new Money();
-		
-		MyMoney.add(MyMoney);
-		assertTrue(MyMoney.equals(M_5_USD));
-		assertTrue(!MyMoney.equals(M_15_USD));
-		
-		assertEquals(5,MyMoney.get_amount() );
+		M_5_USD = M_5_USD.add(M_15_USD);
+		assertTrue(M_5_USD.getAmount() == 20);
 	}
-
 	@Test
-	public void testGetAmount() {
-	}
-
-	@Test
-	public void testSetAmount() {
-	}
-
-	@Test
-	public void testGetCurrency() {
-	}
-
-	@Test
-	public void testSetCurrency() {
+	public void testAddEquals() {
+		Money MyMoney = new Money();
+		M_5_USD = M_5_USD.add(M_15_USD);
+		assertEquals(M_5_USD.getAmount(),20);
 	}
 
 }
