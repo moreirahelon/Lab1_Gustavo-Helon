@@ -8,7 +8,6 @@ public class MoneyTest {
     private Money M_5_USD;
     private Money M_15_USD;
     private Money M_10_CHF;
-    private Money M_78_EUR;
     private Money M_40_BRL;
 
     @Before
@@ -16,21 +15,43 @@ public class MoneyTest {
     	M_5_USD = new Money(5, "USD");
     	M_15_USD = new Money(15, "USD");
     	M_10_CHF = new Money(10, "CHF");
-    	M_78_EUR = new Money(78, "EUR");
     	M_40_BRL = new Money(40, "BRL");
     }   
 
 	@Test
+	//caso as duas moedas são iguais
 	public void testAddTrue() {
-		Money MyMoney = new Money();
-		M_5_USD = M_5_USD.add(M_15_USD);
+		M_5_USD = (Money)M_5_USD.add(M_15_USD);
 		assertTrue(M_5_USD.getAmount() == 20);
 	}
 	@Test
+	//caso as duas moedas sao diferentes
+	public void testAddDifferentCurrency() {
+		MoneyBag mb = new MoneyBag();
+		mb = (MoneyBag)M_5_USD.add(M_10_CHF);
+		assertTrue(mb.getmoney().contains(M_5_USD));
+		assertTrue(mb.getmoney().contains(M_10_CHF));
+	}
+	@Test
 	public void testAddEquals() {
-		Money MyMoney = new Money();
-		M_5_USD = M_5_USD.add(M_15_USD);
+		M_5_USD = (Money)M_5_USD.add(M_15_USD);
 		assertEquals(M_5_USD.getAmount(),20);
+	}
+	@Test
+	public void testMoneyBagAdd(){
+		MoneyBag mb = new MoneyBag();
+		mb.addMoney(M_5_USD);
+		assertEquals(mb.getmoney().get(0).getAmount(), 5);
+		assertTrue(mb.getmoney().get(0).getCurrency().getStringCurrency() == "USD");
+	}
+	@Test
+	//testar moneybagtotal
+	public void testMoneyBagTotal(){
+		MoneyBag mb = new MoneyBag();
+		mb.addMoney(M_5_USD);
+		mb.addMoney(M_40_BRL);
+		mb.addMoney(M_10_CHF);
+		assertEquals(mb.MoneyTotal(), 75);
 	}
 
 }
