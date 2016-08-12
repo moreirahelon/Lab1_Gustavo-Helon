@@ -19,7 +19,6 @@ public class MoneyTest {
     }   
 
 	@Test
-	//caso as duas moedas são iguais
 	public void testAddTrue() {
 		M_5_USD = (Money)M_5_USD.add(M_15_USD);
 		assertTrue(M_5_USD.getAmount() == 20);
@@ -52,6 +51,12 @@ public class MoneyTest {
 		mb.addMoney(M_40_BRL);
 		mb.addMoney(M_10_CHF);
 		assertEquals(mb.MoneyTotal(), 75);
+	}
+	@Test
+	//caso vazio
+	public void testMoneyBagTotalEmpty(){
+		MoneyBag mb = new MoneyBag();
+		assertEquals(mb.MoneyTotal(), 0);
 	}
 
 }
