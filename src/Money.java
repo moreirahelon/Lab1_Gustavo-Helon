@@ -6,7 +6,21 @@ public class Money {
 		
 		//************************
 		
+		
+		
+		
+		
+		
+		
+		
 		//CRIAR A PORRA DA MAIN, O ITEM 9
+		
+		
+		
+		
+		
+		
+		
 		
 		//************************
 		
@@ -31,18 +45,22 @@ public class Money {
   		this._currency = new Currency(currency);
 	}
 	
-	public Object add(Money m) { 
+	@SuppressWarnings("unchecked")
+	public <T> T add(Money m) {
+		T t;
 		if (this.getCurrency().getStringCurrency() == m.getCurrency().getStringCurrency()){
 			Money money = new Money();		
 			money.setAmount(this.getAmount() + m.getAmount()); 
 			money.setCurrency(this.getCurrency());		
-			return money;
+			t = (T)money;
+			return t;
 		}
 		else{
 			MoneyBag mb = new MoneyBag();
 			mb.addMoney(this);
 			mb.addMoney(m);
-			return mb;
+			t = (T)mb;
+			return t;
 		}
 	}	
 	public void setAmount(int amount) { 

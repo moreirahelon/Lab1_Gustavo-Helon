@@ -20,20 +20,20 @@ public class MoneyTest {
 
 	@Test
 	public void testAddTrue() {
-		M_5_USD = (Money)M_5_USD.add(M_15_USD);
+		M_5_USD = M_5_USD.add(M_15_USD);
 		assertTrue(M_5_USD.getAmount() == 20);
 	}
 	@Test
 	//caso as duas moedas sao diferentes
 	public void testAddDifferentCurrency() {
 		MoneyBag mb = new MoneyBag();
-		mb = (MoneyBag)M_5_USD.add(M_10_CHF);
+		mb = M_5_USD.add(M_10_CHF);
 		assertTrue(mb.getmoney().contains(M_5_USD));
 		assertTrue(mb.getmoney().contains(M_10_CHF));
 	}
 	@Test
 	public void testAddEquals() {
-		M_5_USD = (Money)M_5_USD.add(M_15_USD);
+		M_5_USD = M_5_USD.add(M_15_USD);
 		assertEquals(M_5_USD.getAmount(),20);
 	}
 	@Test
