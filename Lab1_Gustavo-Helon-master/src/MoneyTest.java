@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,11 +14,16 @@ public class MoneyTest {
 
     @Before
     public void setUp() {
-    	M_5_USD = new Money(5, "USD");
-    	M_15_USD = new Money(15, "USD");
+    	M_5_USD = new Money(5,"USD");
+    	M_15_USD = new Money(15,"USD");
     	M_10_CHF = new Money(10, "CHF");
     	M_40_BRL = new Money(40, "BRL");
     }   
+    @Test
+    public void testMoneyEquals(){
+    	assertTrue(M_5_USD.equals(M_15_USD));
+    	assertFalse(M_10_CHF.equals(M_40_BRL));
+    }
 
 	@Test
 	public void testAddTrue() {
@@ -40,8 +47,11 @@ public class MoneyTest {
 	public void testMoneyBagAdd(){
 		MoneyBag mb = new MoneyBag();
 		mb.addMoney(M_5_USD);
-		assertEquals(mb.getmoney().get(0).getAmount(), 5);
-		assertTrue(mb.getmoney().get(0).getCurrency().getStringCurrency() == "USD");
+		mb.addMoney(M_15_USD);
+		mb.addMoney(M_10_CHF);
+		ArrayList<Money> m = mb.getmoney();
+		int i = m.indexOf(M_15_USD);
+		assertEquals(m.get(i).getAmount(), 20);
 	}
 	@Test
 	//testar moneybagtotal

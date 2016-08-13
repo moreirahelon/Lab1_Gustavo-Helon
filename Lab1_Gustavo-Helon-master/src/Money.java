@@ -23,6 +23,18 @@ public class Money {
 	}
 	private int _amount; 
 	private Currency _currency;
+	@Override
+	public boolean equals (Object o){
+		if (o instanceof Money){
+			Money m = (Money)o;
+			if (this.getCurrency().getStringCurrency() == m.getCurrency().getStringCurrency())
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
 	public Money() {
 		this._amount = 0;
   		this._currency = new Currency();		
@@ -39,7 +51,7 @@ public class Money {
 	@SuppressWarnings("unchecked")
 	public <T> T add(Money m) {
 		T t;
-		if (this.getCurrency().getStringCurrency() == m.getCurrency().getStringCurrency()){
+		if (this.equals(m)){
 			Money money = new Money();
 			money.setAmount(this.getAmount() + m.getAmount());
 			money.setCurrency(this.getCurrency());
@@ -98,8 +110,15 @@ class MoneyBag{
 		_money = new ArrayList<Money>();
 	}
 	public void addMoney(Money m){
-		if(m!= null)
-			_money.add(m);
+		if(m!= null){
+			if(this._money.contains(m)){
+				int i = this._money.indexOf(m);
+				Money mon = this._money.get(i);
+				mon.setAmount(mon.getAmount() + m.getAmount());
+			}
+			else
+				_money.add(m);
+		}
 	}
 	public ArrayList<Money> getmoney(){
 		if (_money != null)
